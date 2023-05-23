@@ -163,4 +163,16 @@ namespace GameREFACTOR.Systems
             return x.OrderOfPlay.CompareTo(y.OrderOfPlay);
         }
     }
+    
+    public static class ActionSystemExtensions {
+        public static void Perform (this IContainer game, GameAction action) {
+            var actionSystem = game.GetSystem<ActionSystem> ();
+            actionSystem.Perform (action);
+        }
+
+        public static void AddReaction (this IContainer game, GameAction action) {
+            var actionSystem = game.GetSystem<ActionSystem> ();
+            actionSystem.AddReaction (action);
+        }
+    }
 }

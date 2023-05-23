@@ -59,4 +59,14 @@ namespace GameREFACTOR.StateManagement
             toState.Enter();
         }
     }
+    
+    public static class StateMachineExtensions
+    {
+        public static void ChangeState<TState>(this IContainer game)
+            where TState : class, IState, new()
+        {
+            var stateMachine = game.GetSystem<StateMachine>();
+            stateMachine.ChangeState<TState>();
+        }
+    }
 }
