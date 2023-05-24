@@ -41,6 +41,11 @@ namespace GameREFACTOR.Systems
             Container.ChangeState<PlayerIdleState>();
         }
 
+        private void Update()
+        {
+            _actionSystem.Update();
+        }
+
         private void Temp_SetupSinglePlayer()
         {
             var match = Container.GetMatch();

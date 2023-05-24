@@ -12,9 +12,10 @@ namespace GameREFACTOR.Systems.Core
             game.AddSystem<ActionSystem>();
             game.AddSystem<MatchSystem>();
             game.AddSystem<TurnSystem>();
+            game.AddSystem<GlobalGameStateSystem>();
+
             // Add Others
             game.AddSystem<StateMachine>();
-            game.AddSystem<GlobalGameState>();
             return game;
         }
     }
