@@ -2,7 +2,7 @@ using GameREFACTOR.Systems.Core;
 
 namespace GameREFACTOR.StateManagement
 {
-    public interface IState
+    public interface IState : IGameSystem
     {
         IContainer Game { get; set; }
         StateMachine Owner { get; set; }
@@ -12,7 +12,7 @@ namespace GameREFACTOR.StateManagement
         void Exit();
     }
     
-    public abstract class BaseState : IState
+    public abstract class BaseState : GameSystem, IState
     {
         public IContainer Game { get; set; }
         public StateMachine Owner { get; set; }

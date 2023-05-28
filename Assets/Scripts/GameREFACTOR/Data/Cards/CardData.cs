@@ -26,6 +26,6 @@ namespace GameREFACTOR.Data.Cards
         [HideInInspector]
         public Sprite Image;
 
-        
+       
     }
 }

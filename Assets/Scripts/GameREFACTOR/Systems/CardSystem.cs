@@ -24,10 +24,6 @@ namespace GameREFACTOR.Systems
             PlayableCards.Clear();
             ActivatableCards.Clear();
             SolvableAdventureCards.Clear();
-            
-            
-
-            
         }
         
         public bool IsPlayable(Card card) => PlayableCards.Contains(card);
