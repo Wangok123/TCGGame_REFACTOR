@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using DG.Tweening;
+using GameREFACTOR.Data;
 using GameREFACTOR.Enums;
 using GameREFACTOR.GameActions;
 using GameREFACTOR.GameActions.GameFlow;
@@ -86,5 +88,27 @@ namespace GameREFACTOR.Views
 
             return true;
         }
+
+    IEnumerator ShowBanner(Player targetPlayer)
+    {
+      if (targetPlayer.ControlMode != ControlMode.Local)
+        yield break;
+
+      var tweener = yourTurnBanner.DOScale(Vector3.one, 0.25f);
+      while (tweener.IsPlaying()) { yield return null; }
+
+      yield return new WaitForSeconds(1);
+
+      tweener = yourTurnBanner.DOScale(Vector3.zero, 0.25f);
+      while (tweener.IsPlaying()) { yield return null; }
     }
+    
+    IEnumerator FlipButton (Player targetPlayer) {
+        var up = Quaternion.identity;
+        var down = Quaternion.Euler (new Vector3(180, 0, 0));
+        var targetRotation = targetPlayer.ControlMode == ControlMode.Local ? up : down;
+        var tweener = _buttonView.RotationHandle.DORotate(targetRotation.eulerAngles, 0.5f);
+        while (tweener.IsPlaying()) { yield return null; }
+    }
+  }
 }

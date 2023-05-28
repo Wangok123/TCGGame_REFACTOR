@@ -26,10 +26,6 @@ namespace GameREFACTOR.Data.Cards
         [HideInInspector]
         public Sprite Image;
 
-        [HideInInspector]
-        public List<CardAttribute> Attributes = new List<CardAttribute>();
-
-        [HideInInspector]
-        public CardType Type;
+       
     }
 }

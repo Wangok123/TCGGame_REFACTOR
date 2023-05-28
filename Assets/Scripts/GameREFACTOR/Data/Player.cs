@@ -11,7 +11,6 @@ namespace GameREFACTOR.Data
         public ControlMode ControlMode { get; set; }
         public int Index { get; set; }
         public int ActionsAvailable { get; set; }
-        public Deck SelectedDeck { get; set; }
         public string PlayerName { get; set; }
         
         public List<Card> AllCards  { get; }
@@ -39,35 +38,14 @@ namespace GameREFACTOR.Data
             Hand = new List<Card>();
         }
 
+        public Player(int index) : this()
+        {
+            Index = index;
+        }
+
         public void Initialize(GameSettings settings)
         {
             ResetState();
-            var (deck, startingCharacter) = LoadPlayerData(settings);
-            
-        }
-
-        private (List<CardData> deck, CardData startingCharacter) LoadPlayerData(GameSettings settings)
-        {
-            if (!settings.DebugMode)
-            {
-                return (SelectedDeck.Cards, SelectedDeck.StartingCharacter);
-            }
-            
-            List<CardData> deck;
-            CardData startingChar;
-            
-            if (settings.OverridePlayerDeck && ControlMode == ControlMode.Local)
-            {
-                deck = settings.LocalDeck;
-                startingChar = settings.LocalStarting;
-
-            }
-            else
-            {
-                return (SelectedDeck.Cards, SelectedDeck.StartingCharacter);
-            }
-
-            return (deck, startingChar);
         }
 
         private void ResetState()

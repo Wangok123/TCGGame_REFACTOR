@@ -13,7 +13,8 @@ namespace GameREFACTOR.Systems.Core
             game.AddSystem<MatchSystem>();
             game.AddSystem<TurnSystem>();
             game.AddSystem<GlobalGameStateSystem>();
-
+            game.AddSystem<PlayerSystem>();
+            
             // Add Others
             game.AddSystem<StateMachine>();
             return game;

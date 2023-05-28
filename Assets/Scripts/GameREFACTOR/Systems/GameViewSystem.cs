@@ -7,7 +7,6 @@ using UnityEngine;
 
 namespace GameREFACTOR.Systems
 {
-    [RequireComponent(typeof(InputSystem))]
     public class GameViewSystem : MonoBehaviour, IGameSystem
     {
         private IContainer _container;
