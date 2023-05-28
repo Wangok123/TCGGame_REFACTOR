@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GameREFACTOR.Systems;
 using GameREFACTOR.Systems.Core;
 
 namespace GameREFACTOR.StateManagement
@@ -8,14 +9,14 @@ namespace GameREFACTOR.StateManagement
     {
         public IState CurrentState { get; private set; }
         public IState PreviousState { get; private set; }
-        
+
         private readonly Dictionary<Type, IState> _states;
 
         public StateMachine()
         {
             _states = new Dictionary<Type, IState>();
         }
-        
+
         public void AddState(IState newState)
         {
             newState.Owner = this;
@@ -23,7 +24,7 @@ namespace GameREFACTOR.StateManagement
 
             _states.Add(newState.GetType(), newState);
         }
-        
+
         public void ChangeState<TState>()
             where TState : class, IState, new()
         {
@@ -59,7 +60,7 @@ namespace GameREFACTOR.StateManagement
             toState.Enter();
         }
     }
-    
+
     public static class StateMachineExtensions
     {
         public static void ChangeState<TState>(this IContainer game)
@@ -67,6 +68,11 @@ namespace GameREFACTOR.StateManagement
         {
             var stateMachine = game.GetSystem<StateMachine>();
             stateMachine.ChangeState<TState>();
+        }
+
+        public static IContainer GetGame(this IContainer container)
+        {
+            return container.GetSystem<GameViewSystem>().Container;
         }
     }
 }

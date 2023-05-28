@@ -21,7 +21,7 @@ namespace GameREFACTOR.Systems
         
         public void Awake()
         {
-            throw new System.NotImplementedException();
+            
         }
         
         public void Perform(GameAction action)
