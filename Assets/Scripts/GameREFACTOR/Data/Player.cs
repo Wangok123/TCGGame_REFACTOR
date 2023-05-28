@@ -8,16 +8,24 @@ namespace GameREFACTOR.Data
     [CreateAssetMenu(menuName = "REFACTOR/Player")]
     public class Player : ScriptableObject
     {
+        
+        public const int maxDeck = 30;
+        public const int maxHand = 10;
+        public const int maxBattlefield = 7;
+        public const int maxSecrets = 5;
+        
         public ControlMode ControlMode { get; set; }
         public int Index { get; set; }
         public int ActionsAvailable { get; set; }
         public string PlayerName { get; set; }
+        public Mana mana  = new Mana ();
         
         public List<Card> AllCards  { get; }
         public List<Card> Deck       { get; }
         public List<Card> Discard    { get; }
         public List<Card> Hand       { get; }
         
+
         public List<Card> this[Zones z] {
             get {
                 switch (z) {

@@ -30,5 +30,15 @@ namespace GameREFACTOR.Systems
         public bool IsActivatable(Card card) => ActivatableCards.Contains(card);
         public bool IsSolvable(Card card) => SolvableAdventureCards.Contains(card);
         public bool IsActionable(Card card) => IsPlayable(card) || IsActivatable(card) || IsSolvable(card);
+
+        public void ChangeZone(Card card, Zones zone, Player toPlayer = null)
+        {
+            var fromPlayer = Container.GetMatch ().Players [card.ownerIndex];
+            toPlayer = toPlayer ?? fromPlayer;
+            fromPlayer [card.zone].Remove (card);
+            toPlayer [zone].Add (card);
+            card.zone = zone;
+            card.ownerIndex = toPlayer.Index;
+        }
     }
 }

@@ -5,26 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36c9d45d-e94e-4e25-893c-1c12f34e6b22" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Controllers.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Controllers/CardPlaying.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Controllers/CardPlaying/CardPlayingController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Controllers/CardPlaying/CardPlayingController.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Data/Mana.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Data/Mana.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Data/Validator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Data/Validator.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Systems/ManaSystem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Systems/ManaSystem.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.TCGGame_REFACTOR/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TCGGame_REFACTOR/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Systems/Core/Container.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Systems/Core/Container.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/BoardView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game/BoardView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/BoardView.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game/BoardView.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/CardView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game/CardView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/CardView.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game/CardView.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/ChangeTurnButtonView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game/ChangeTurnButtonView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/ChangeTurnButtonView.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game/ChangeTurnButtonView.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/ChangeTurnView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game/ChangeTurnView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/ChangeTurnView.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game/ChangeTurnView.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/DeckView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game/DeckView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/DeckView.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game/DeckView.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/DrawCardsView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game/DrawCardsView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/DrawCardsView.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Views/Game/DrawCardsView.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Data/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Data/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Enums/Enums.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Enums/Enums.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Systems/CardSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Systems/CardSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Systems/PlayerSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/Systems/PlayerSystem.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +35,9 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/835cc853cfed4771a6eca19a5d8e543d129a00/d7/1e63dbee/Clickable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/ba/7bfee513/Container.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Pixelplacement/iTween/iTween.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameREFACTOR/GameActions/Actions/OverdrawAction.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
