@@ -7,14 +7,19 @@ using GameREFACTOR.GameActions;
 using GameREFACTOR.GameActions.Actions;
 using GameREFACTOR.Systems.Core;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace GameREFACTOR.Views.Game
 {
     public class HandView : MonoBehaviour
     {
         public List<Transform> cards = new List<Transform>();
+        public Transform handArea;
         public Transform activeHandle;
         public Transform inactiveHandle;
+        
+        [SerializeField] private float addCardDuration = 0.1f;
+
 
         private void OnEnable()
         {
@@ -34,7 +39,7 @@ namespace GameREFACTOR.Views.Game
                 while (preview.MoveNext())
                     yield return null;
 
-                var tweener = card.Wait(1);
+                var tweener = card.Wait(addCardDuration);
                 while (tweener != null)
                     yield return null;
             }
@@ -94,7 +99,7 @@ namespace GameREFACTOR.Views.Game
             foreach (Transform t in cards)
             {
                 var cardView = t.GetComponent<CardView>();
-                if (cardView.card == card)
+                if (cardView.Card == card)
                 {
                     return cardView;
                 }

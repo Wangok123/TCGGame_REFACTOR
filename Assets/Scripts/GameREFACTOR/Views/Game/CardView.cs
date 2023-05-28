@@ -12,14 +12,14 @@ namespace GameREFACTOR.Views.Game
         public TextMeshProUGUI effectText;
         public TextMeshProUGUI cardText;
 
-        public Card card;
+        public Card Card;
 
         void Refresh()
         {
-            costText.text = card.cost.ToString();
-            titleText.text = card.name;
-            effectText.text = card.text;
-            cardText.text = card.description;
+            costText.text = Card.cost.ToString();
+            titleText.text = Card.name;
+            effectText.text = Card.text;
+            cardText.text = Card.description;
         }
     }
 }

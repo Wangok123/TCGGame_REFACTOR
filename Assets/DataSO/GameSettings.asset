@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc74b325f1df4380b0af724d0297c09c, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  TweenTimescale: 0
+  TweenTimescale: 1
   DebugMode: 0
   OverridePlayerDeck: 0
   LocalStarting: {fileID: 0}
-  LocalDeck: []
+  LocalDeck:
+  - {fileID: 11400000, guid: b402d42bed4324e1da4e936ae657357e, type: 2}
+  - {fileID: 11400000, guid: b402d42bed4324e1da4e936ae657357e, type: 2}
+  - {fileID: 11400000, guid: b402d42bed4324e1da4e936ae657357e, type: 2}
+  - {fileID: 11400000, guid: b402d42bed4324e1da4e936ae657357e, type: 2}

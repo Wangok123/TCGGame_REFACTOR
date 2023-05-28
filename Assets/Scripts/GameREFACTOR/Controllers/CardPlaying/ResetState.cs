@@ -11,7 +11,8 @@ namespace GameREFACTOR.Controllers.CardPlaying
         {
             base.Enter();
             Owner.ChangeState<WaitingForInputState>();
-            IContainer game = Container.GetGame();
+            var context = Container.GetSystem<CardPlayingContext>();
+            IContainer game = context.Game;
 
             if (!game.GetSystem<ActionSystem>().IsActive)
                 game.ChangeState<PlayerIdleState>();

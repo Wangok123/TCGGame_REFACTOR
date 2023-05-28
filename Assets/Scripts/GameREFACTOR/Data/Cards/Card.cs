@@ -16,6 +16,14 @@ namespace GameREFACTOR.Data.Cards
         public Zones zone = Zones.Deck;
         public string description;
 
+        public void Load(CardData cardData)
+        {
+            id = cardData.Id;
+            name = cardData.CardName;
+            text = cardData.CardDescription;
+            description = cardData.ExtraDescription;
+        }
+
         public virtual void Load (Dictionary<string, object> data) {
             id = (string)data ["id"];
             name = (string)data ["name"];

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace GameREFACTOR.Data.Cards
 {
+    [CreateAssetMenu(menuName = "REFACTOR/CardData")]
     public class CardData : ScriptableObject
     {
         [HideInInspector]
@@ -16,6 +17,10 @@ namespace GameREFACTOR.Data.Cards
         [Space(10)]
         public string CardDescription;
 
+        [TextArea]
+        [Space(10)]
+        public string ExtraDescription;
+        
         [Space(10)]
         public Tag Tags;
 

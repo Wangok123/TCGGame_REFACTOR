@@ -6,6 +6,7 @@ namespace GameREFACTOR.Controllers.CardPlaying
     public class CardPlayingContext : IGameSystem
     {
         public IContainer Container { get; set; }
+        public IContainer Game { get; set; }
         public CardView ActiveCardView { get; set; }
     }
 }
