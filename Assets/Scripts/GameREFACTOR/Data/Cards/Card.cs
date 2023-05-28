@@ -14,6 +14,7 @@ namespace GameREFACTOR.Data.Cards
         public int orderOfPlay = int.MaxValue;
         public int ownerIndex;
         public Zones zone = Zones.Deck;
+        public string description;
 
         public virtual void Load (Dictionary<string, object> data) {
             id = (string)data ["id"];

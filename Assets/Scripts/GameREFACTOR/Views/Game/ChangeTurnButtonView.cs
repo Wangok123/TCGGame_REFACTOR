@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ChangeTurnButtonView : MonoBehaviour
+namespace GameREFACTOR.Views.Game
 {
-    public Transform RotationHandle;
-    public TextMeshProUGUI endText;
+    public class ChangeTurnButtonView : MonoBehaviour
+    {
+        public Transform RotationHandle;
+        public TextMeshProUGUI endText;
+    }
 }

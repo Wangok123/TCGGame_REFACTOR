@@ -1,18 +1,18 @@
-using System.Collections;
 using System.Collections.Generic;
 using GameREFACTOR.Data;
 using GameREFACTOR.Data.Cards;
-using GameREFACTOR.GameActions;
-using UnityEngine;
 
-public class DrawCardsAction : GameAction
+namespace GameREFACTOR.GameActions.Actions
 {
-    public int Amount;
-    public List<Card> Cards;
-
-    public DrawCardsAction(Player player, int amount)
+    public class DrawCardsAction : GameAction
     {
-        this.Player = player;
-        Amount = amount;
+        public int Amount { get; }
+        public List<Card> Cards { get; set; }
+
+        public DrawCardsAction(Player player, int amount)
+        {
+            this.Player = player;
+            Amount = amount;
+        }
     }
 }

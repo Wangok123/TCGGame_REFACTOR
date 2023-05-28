@@ -1,10 +1,6 @@
-﻿using GameREFACTOR.Enums;
-using GameREFACTOR.GameActions.Actions;
-using GameREFACTOR.StateManagement;
-using GameREFACTOR.StateManagement.GameStates;
+﻿using GameREFACTOR.StateManagement;
 using GameREFACTOR.Systems;
 using GameREFACTOR.Systems.Core;
-using GameREFACTOR.Views;
 using UnityEngine;
 using static GameREFACTOR.Notification;
 
@@ -12,96 +8,37 @@ namespace GameREFACTOR.Controllers.CardPlaying
 {
     public class CardPlayingController : MonoBehaviour
     {
-        IContainer game;
-        Container container;
-        StateMachine stateMachine;
-        CardView activeCardView;
+        StateMachine _stateMachine;
 
-        void Awake()
+        private void Awake()
         {
-            game = GetComponentInParent<GameViewSystem>().Container;
-            container = new Container();
-            stateMachine = container.AddSystem<StateMachine>();
-
-            container.AddSystem(new WaitingForInputState()).owner = this;
-            container.AddSystem(new ConfirmState()).owner = this;
-            container.AddSystem(new ResetState()).owner = this;
-            stateMachine.ChangeState<WaitingForInputState>();
+            var gameViewSystem = GetComponentInParent<GameViewSystem>();
+           var container = new Container();
+           
+            container.AddSystem(gameViewSystem);
+            container.AddSystem<CardPlayingContext>();
+            
+            _stateMachine = container.AddSystem<StateMachine>();
+            _stateMachine.AddState(new WaitingForInputState());
+            _stateMachine.AddState(new ConfirmState());
+            _stateMachine.AddState(new ResetState());
+            _stateMachine.ChangeState<WaitingForInputState>();
         }
 
-        void OnEnable()
+        private void OnEnable()
         {
             Global.Events.Subscribe(Perform<CardPlayingController>(), OnClickNotification);
         }
 
-        void OnDisable()
+        private void OnDisable()
         {
-            Global.Events.Unsubscribe(Perform<CardPlayingController>(),OnClickNotification);
+            Global.Events.Unsubscribe(Perform<CardPlayingController>(), OnClickNotification);
         }
 
-        void OnClickNotification(object sender, object args)
+        private void OnClickNotification(object sender, object args)
         {
-            var handler = stateMachine.CurrentState as IClickableHandler;
-            if (handler != null)
+            if (_stateMachine.CurrentState is IClickableHandler handler)
                 handler.OnClickNotification(sender, args);
         }
-
-        #region Controller States
-
-        private interface IClickableHandler
-        {
-            void OnClickNotification(object sender, object args);
-        }
-
-        private abstract class BaseControllerState : BaseState
-        {
-            public CardPlayingController owner;
-        }
-
-        private class WaitingForInputState : BaseControllerState, IClickableHandler
-        {
-            public void OnClickNotification(object sender, object args)
-            {
-                var gameStateMachine = owner.game.GetSystem<StateMachine>();
-                if (!(gameStateMachine.CurrentState is PlayerIdleState))
-                    return;
-
-                var clickable = sender as Component;
-                var cardView = clickable.GetComponent<CardView>();
-                if (cardView == null ||
-                    cardView.card.zone != Zones.Hand ||
-                    cardView.card.ownerIndex != owner.game.GetMatch().CurrentPlayerIndex)
-                    return;
-
-                gameStateMachine.ChangeState<PlayerInputState>();
-                owner.activeCardView = cardView;
-                // owner.stateMachine.ChangeState<ShowPreviewState>();
-            }
-        }
-
-        private class ConfirmState : BaseControllerState
-        {
-            public override void Enter()
-            {
-                base.Enter();
-                var action = new PlayCardAction(owner.activeCardView.card);
-                owner.game.Perform(action);
-                owner.stateMachine.ChangeState<ResetState>();
-            }
-        }
-
-        private class ResetState : BaseControllerState
-        {
-            public override void Enter()
-            {
-                base.Enter();
-                owner.stateMachine.ChangeState<WaitingForInputState>();
-                if (!owner.game.GetSystem<ActionSystem>().IsActive)
-                    owner.game.ChangeState<PlayerIdleState>();
-            }
-        }
-
-        #endregion
     }
-
 }
