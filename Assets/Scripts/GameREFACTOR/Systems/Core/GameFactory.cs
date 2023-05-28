@@ -14,7 +14,7 @@ namespace GameREFACTOR.Systems.Core
             game.AddSystem<TurnSystem>();
             game.AddSystem<GlobalGameStateSystem>();
             game.AddSystem<PlayerSystem>();
-            
+            game.AddSystem<ManaSystem>();
             // Add Others
             game.AddSystem<StateMachine>();
             return game;

@@ -7,6 +7,8 @@ namespace GameREFACTOR.Systems
 {
     public class ManaSystem : GameSystem , IObserve
     {
+        public const string ValueChangedNotification = "ManaSystem.ValueChangedNotification";
+        
         public void Awake()
         {
             Global.Events.Subscribe(Notification.Perform<ChangeTurnAction>(), OnPerformChangeTurn);
@@ -40,7 +42,7 @@ namespace GameREFACTOR.Systems
             mana.overloaded = mana.pendingOverloaded;
             mana.pendingOverloaded = 0;
             mana.temporary = 0;
-            Global.Events.Publish(Notification.Perform(GetType()),mana);
+            Global.Events.Publish(ValueChangedNotification,mana);
         }
         
         private void OnPerformPlayCard(object sender, object args)
@@ -48,7 +50,7 @@ namespace GameREFACTOR.Systems
             var action = args as PlayCardAction;
             var mana = Container.GetMatch ().CurrentPlayer.mana;
             mana.spent += action.card.cost;
-            Global.Events.Publish(Notification.Perform(GetType()),mana);
+            Global.Events.Publish(ValueChangedNotification,mana);
         }
     }
 }
