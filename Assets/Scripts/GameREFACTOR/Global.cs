@@ -10,11 +10,7 @@ namespace GameREFACTOR
         public static int GenerateId(Type type) => Animator.StringToHash(type.Name);
     
         public static readonly EventAggregator Events = new EventAggregator();
-
-        public static SaveManager SaveManager;
-        public static OverlayModal OverlayModal;
-        public static TooltipController Tooltip;
-        public static CursorController Cursor;
+        
     }
     
     public static class Notification

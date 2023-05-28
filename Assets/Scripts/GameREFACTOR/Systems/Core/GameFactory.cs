@@ -14,7 +14,6 @@ namespace GameREFACTOR.Systems.Core
             game.AddSystem<TurnSystem>();
             // Add Others
             game.AddSystem<StateMachine>();
-            game.AddSystem<GlobalGameState>();
             return game;
         }
     }

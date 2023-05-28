@@ -80,4 +80,10 @@ namespace GameREFACTOR.Data
             Hand.Clear();
         }
     }
+
+    public class Deck
+    {
+        public List<CardData> Cards { get; set; }
+        public CardData StartingCharacter { get; set; }
+    }
 }
