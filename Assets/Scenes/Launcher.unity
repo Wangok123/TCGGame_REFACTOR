@@ -152,6 +152,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ace1b24bc66542d0a484ad0b3694264, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameSceneReference:
+    m_AssetGUID: d2616c90a0daf402d90ef7af3dbf3fd7
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  hudSceneReference:
+    m_AssetGUID: ce35adfde09924e65ae30226b7df9221
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
 --- !u!4 &900045520
 Transform:
   m_ObjectHideFlags: 0

@@ -1,8 +1,10 @@
+using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace GameREFACTOR.SceneManagement
 {
-    public class GameSceneSO
+    [CreateAssetMenu(fileName = "GameSceneSO")]
+    public class GameSceneSO : ScriptableObject
     {
         public GameSceneType sceneType;
         public AssetReference sceneReference; //Used at runtime to load the scene from the right AssetBundle
