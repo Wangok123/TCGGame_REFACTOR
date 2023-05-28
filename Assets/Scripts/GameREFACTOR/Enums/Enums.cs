@@ -9,6 +9,7 @@ namespace GameREFACTOR.Enums
         Deck       = 1,
         Discard    = 1 << 1,
         Hand       = 1 << 2,
+        Graveyard  = 1 << 3
     }
     
     public enum ControlMode

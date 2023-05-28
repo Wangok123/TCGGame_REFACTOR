@@ -17,6 +17,7 @@ namespace GameREFACTOR.Data
         public void Initialize(GameSettings settings)
         {
             CurrentPlayerIndex = 0;
+            Debug.Log($"LocalPlayer{LocalPlayer}" );
             Players = new List<Player>(1)
             {
                 LocalPlayer
