@@ -83,8 +83,8 @@ namespace GameREFACTOR.Systems
         
         private void OnPerformPlayCard (object sender, object args) {
             var action = args as PlayCardAction;
-            if (action.card.zone == Zones.Hand)
-                ChangeZone (action.card, Zones.Graveyard);
+            if (action.Card.zone == Zones.Hand)
+                ChangeZone (action.Card, Zones.Graveyard);
         }
     }
 }

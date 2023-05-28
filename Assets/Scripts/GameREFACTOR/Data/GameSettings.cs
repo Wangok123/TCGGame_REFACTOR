@@ -13,6 +13,6 @@ namespace GameREFACTOR.Data
         
         [HideInInspector] public bool OverridePlayerDeck;
         [HideInInspector] public CardData LocalStarting;
-        [HideInInspector] public List<CardData> LocalDeck;
+         public List<CardData> LocalDeck;
     }
 }

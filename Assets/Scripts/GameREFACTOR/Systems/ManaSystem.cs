@@ -28,8 +28,8 @@ namespace GameREFACTOR.Systems
         {
             var playCardAction = sender as PlayCardAction;
             var validator = args as Validator;
-            var player = Container.GetMatch().Players[playCardAction.card.ownerIndex];
-            if (player.mana.Available < playCardAction.card.cost)
+            var player = Container.GetMatch().Players[playCardAction.Card.ownerIndex];
+            if (player.mana.Available < playCardAction.Card.cost)
                 validator.Invalidate("费不够");
         }
 
@@ -49,7 +49,7 @@ namespace GameREFACTOR.Systems
         {
             var action = args as PlayCardAction;
             var mana = Container.GetMatch ().CurrentPlayer.mana;
-            mana.spent += action.card.cost;
+            mana.spent += action.Card.cost;
             Global.Events.Publish(ValueChangedNotification,mana);
         }
     }

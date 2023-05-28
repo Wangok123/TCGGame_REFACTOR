@@ -1,4 +1,5 @@
 using System;
+using GameREFACTOR.Data;
 using GameREFACTOR.Enums;
 using GameREFACTOR.StateManagement;
 using GameREFACTOR.StateManagement.GameStates;
@@ -9,6 +10,9 @@ namespace GameREFACTOR.Systems
 {
     public class GameViewSystem : MonoBehaviour, IGameSystem
     {
+        public MatchData Match;
+        public GameSettings Settings;
+        
         private IContainer _container;
         public IContainer Container
         {
@@ -16,7 +20,7 @@ namespace GameREFACTOR.Systems
             {
                 if (_container == null)
                 {
-                    _container = GameFactory.Create();
+                    _container = GameFactory.Create(Match, Settings);
                     _container.AddSystem(this);
                 }
 
