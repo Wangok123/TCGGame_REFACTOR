@@ -12,12 +12,12 @@ namespace GameREFACTOR.Controllers.CardPlaying
 
         private void Awake()
         {
-            var gameViewSystem = GetComponentInParent<GameViewSystem>();
-           var container = new Container();
-           
-            container.AddSystem(gameViewSystem);
-            container.AddSystem<CardPlayingContext>();
-            
+            IContainer game = FindObjectOfType<GameViewSystem>().Container;
+            var container = new Container();
+
+            var context = container.AddSystem<CardPlayingContext>();
+            context.Game = game;
+
             _stateMachine = container.AddSystem<StateMachine>();
             _stateMachine.AddState(new WaitingForInputState());
             _stateMachine.AddState(new ConfirmState());
@@ -27,12 +27,12 @@ namespace GameREFACTOR.Controllers.CardPlaying
 
         private void OnEnable()
         {
-            Global.Events.Subscribe(Perform<CardPlayingController>(), OnClickNotification);
+            Global.Events.Subscribe(Perform<CardSelectController>(), OnClickNotification);
         }
 
         private void OnDisable()
         {
-            Global.Events.Unsubscribe(Perform<CardPlayingController>(), OnClickNotification);
+            Global.Events.Unsubscribe(Perform<CardSelectController>(), OnClickNotification);
         }
 
         private void OnClickNotification(object sender, object args)

@@ -10,6 +10,8 @@ namespace GameREFACTOR.Views.Game
 {
     public class DrawCardsView : MonoBehaviour
     {
+        [SerializeField] private BoardView boardView;
+
         private void OnEnable()
         {
             Global.Events.Subscribe(Notification.Prepare<DrawCardsAction>(), OnPrepareDrawCards);
@@ -34,22 +36,23 @@ namespace GameREFACTOR.Views.Game
             if (action is not DrawCardsAction drawAction)
                 yield break;
 
-            var boardView = GetComponent<BoardView>();
+            Debug.Log("Wh : draw");
             PlayerView playerView = boardView.playerView;
 
-            for (int i = 0; i < drawAction.DrawnCards.Count; ++i)
+            for (int i = 0; i < drawAction.Cards.Count; ++i)
             {
-                int deckSize = action.Player[Zones.Deck].Count + drawAction.DrawnCards.Count - (i + 1);
+                int deckSize = action.Player[Zones.Deck].Count + drawAction.Cards.Count - (i + 1);
 
                 playerView.deck.ShowDeckSize((float)deckSize / (float)30);
                 var cardView = boardView.cardPooler.Dequeue().GetComponent<CardView>();
-                cardView.card = drawAction.DrawnCards[i];
-                cardView.transform.ResetParent(playerView.hand.transform);
+                cardView.Card = drawAction.Cards[i];
+                cardView.transform.ResetParent(playerView.hand.handArea);
+
                 cardView.transform.position = playerView.deck.topCard.position;
                 cardView.transform.rotation = playerView.deck.topCard.rotation;
                 cardView.gameObject.SetActive(true);
-                var showPreview = action.Player.ControlMode == ControlMode.Local;
-                var addCard = playerView.hand.AddCard(cardView.transform, showPreview, false);
+                // var showPreview = action.Player.ControlMode == ControlMode.Local;
+                var addCard = playerView.hand.AddCard(cardView.transform, false, false);
                 while (addCard.MoveNext())
                     yield return null;
             }

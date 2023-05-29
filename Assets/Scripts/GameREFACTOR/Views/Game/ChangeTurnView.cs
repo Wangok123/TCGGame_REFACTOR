@@ -1,5 +1,7 @@
 using System.Collections;
 using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
 using GameREFACTOR.Data;
 using GameREFACTOR.Enums;
 using GameREFACTOR.GameActions;
@@ -20,7 +22,7 @@ namespace GameREFACTOR.Views.Game
 
         private void Awake()
         {
-            _game = GetComponentInParent<GameViewSystem>().Container;
+            _game = FindObjectOfType<GameViewSystem>().Container;
         }
 
         private void OnEnable()
@@ -33,6 +35,7 @@ namespace GameREFACTOR.Views.Game
             Global.Events.Unsubscribe(Notification.Prepare<ChangeTurnAction>(), OnPrepareChangeTurn);
         }
 
+
         private void OnPrepareChangeTurn(object sender, object args)
         {
             var action = args as ChangeTurnAction;
@@ -43,48 +46,22 @@ namespace GameREFACTOR.Views.Game
         {
             var matchSystem = game.GetSystem<MatchSystem>();
             var changeTurnAction = action as ChangeTurnAction;
-            var targetPlayer = matchSystem.Match.Players[changeTurnAction.NextPlayerIndex];
+            Player targetPlayer = matchSystem.Match.Players[changeTurnAction.NextPlayerIndex];
 
             // var banner = ShowBanner(targetPlayer);
-            var button = FlipButton(targetPlayer);
-            var isAnimating = true;
+            IEnumerator button = FlipButton(targetPlayer);
+            bool isAnimating = true;
 
             do
             {
                 // var bannerOn = banner.MoveNext();
-                var buttonOn = button.MoveNext();
-                isAnimating =  buttonOn;
+                bool buttonOn = button.MoveNext();
+                isAnimating = buttonOn;
                 yield return null;
             } while (isAnimating);
         }
 
 
-        public void ChangeTurnButtonPressed()
-        {
-            if (CanChangeTurn())
-            {
-                var system = _game.GetSystem<TurnSystem>();
-                system.ChangeTurn();
-            }
-            else
-            {
-            }
-        }
-
-        private bool CanChangeTurn()
-        {
-            var stateMachine = _game.GetSystem<StateMachine>();
-            if (!(stateMachine.CurrentState is PlayerIdleState))
-            {
-                return false;
-            }
-
-            var player = _game.GetMatch().CurrentPlayer;
-            if (player.ControlMode != ControlMode.Local)
-                return false;
-
-            return true;
-        }
 
         // IEnumerator ShowBanner(Player targetPlayer)
         // {
@@ -106,16 +83,14 @@ namespace GameREFACTOR.Views.Game
         //     }
         // }
 
-        IEnumerator FlipButton(Player targetPlayer)
+        private IEnumerator FlipButton(Player targetPlayer)
         {
-            var up = Quaternion.identity;
-            var down = Quaternion.Euler(new Vector3(180, 0, 0));
-            var targetRotation = targetPlayer.ControlMode == ControlMode.Local ? up : down;
-            var tweener = _buttonView.RotationHandle.DORotate(targetRotation.eulerAngles, 0.5f);
-            while (tweener.IsPlaying())
-            {
-                yield return null;
-            }
+            Quaternion up = Quaternion.identity;
+            Quaternion down = Quaternion.Euler(new Vector3(180, 0, 0));
+            Quaternion targetRotation = targetPlayer.ControlMode == ControlMode.Local ? up : down;
+            TweenerCore<Quaternion, Vector3, QuaternionOptions> tweener =
+                _buttonView.RotationHandle.DORotate(targetRotation.eulerAngles, 0.5f);
+            while (tweener.IsPlaying()) yield return null;
         }
     }
 }

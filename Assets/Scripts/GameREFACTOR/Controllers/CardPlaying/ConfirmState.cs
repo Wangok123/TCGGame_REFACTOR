@@ -11,8 +11,8 @@ namespace GameREFACTOR.Controllers.CardPlaying
         {
             base.Enter();
             var context = Container.GetSystem<CardPlayingContext>();
-            var action = new PlayCardAction(context.ActiveCardView.card);
-            Container.GetGame().Perform(action);
+            var action = new PlayCardAction(context.ActiveCardView.Card);
+            context.Game.Perform(action);
             Owner.ChangeState<ResetState>();
         }
     }

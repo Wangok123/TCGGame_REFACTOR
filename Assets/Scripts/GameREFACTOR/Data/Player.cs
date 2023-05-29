@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using GameREFACTOR.Data.Cards;
 using GameREFACTOR.Enums;
 using UnityEngine;
@@ -8,12 +9,11 @@ namespace GameREFACTOR.Data
     [CreateAssetMenu(menuName = "REFACTOR/Player")]
     public class Player : ScriptableObject
     {
-        
         public const int maxDeck = 30;
         public const int maxHand = 10;
         public const int maxBattlefield = 7;
         public const int maxSecrets = 5;
-        
+
         public ControlMode ControlMode { get; set; }
         public int Index { get; set; }
         public string PlayerName { get; set; }
@@ -25,12 +25,15 @@ namespace GameREFACTOR.Data
         public List<Card> Hand       { get; }
         public List<Card> Bugs       { get; }
 
-        public List<Card> this[Zones z] {
-            get {
-                switch (z) {
-                    case Zones.Deck:       return Deck;
-                    case Zones.Discard:    return Discard;
-                    case Zones.Hand:       return Hand;
+        public List<Card> this[Zones z]
+        {
+            get
+            {
+                switch (z)
+                {
+                    case Zones.Deck: return Deck;
+                    case Zones.Discard: return Discard;
+                    case Zones.Hand: return Hand;
                     default:
                         return null;
                 }
@@ -53,6 +56,22 @@ namespace GameREFACTOR.Data
         public void Initialize(GameSettings settings)
         {
             ResetState();
+
+            LoadCardData(settings);
+        }
+
+        private void LoadCardData(GameSettings settings)
+        {
+            List<CardData> localDeck = settings.LocalDeck;
+            IEnumerable<Card> cards = localDeck.Select(x =>
+            {
+                var card = new Card();
+                card.Load(x);
+                return card;
+            }).ToArray();
+            
+            AllCards.AddRange(cards);
+            Deck.AddRange(cards);
         }
 
         private void ResetState()

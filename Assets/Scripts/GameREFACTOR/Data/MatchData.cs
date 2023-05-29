@@ -25,6 +25,7 @@ namespace GameREFACTOR.Data
             
             LocalPlayer.Index = LOCAL_PLAYER_INDEX;
             LocalPlayer.PlayerName = "Player 1";
+            LocalPlayer.Initialize(settings);
         }
     }
 }

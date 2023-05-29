@@ -21,6 +21,7 @@ namespace GameREFACTOR.StateManagement
         {
             newState.Owner = this;
             newState.Game = Container;
+            newState.Container = Container;
 
             _states.Add(newState.GetType(), newState);
         }
@@ -68,11 +69,6 @@ namespace GameREFACTOR.StateManagement
         {
             var stateMachine = game.GetSystem<StateMachine>();
             stateMachine.ChangeState<TState>();
-        }
-
-        public static IContainer GetGame(this IContainer container)
-        {
-            return container.GetSystem<GameViewSystem>().Container;
         }
     }
 }

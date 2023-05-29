@@ -10,27 +10,15 @@ namespace GameREFACTOR
 {
     public class Initializator : MonoBehaviour
     {
-        [SerializeField] private GameSceneSO _managersScene = default;
-        [SerializeField] private GameSceneSO _menuToLoad = default;
+       [SerializeField] private AssetReference gameSceneReference; //Used at runtime to load the scene from the right AssetBundle
+       [SerializeField] private AssetReference hudSceneReference; //Used at runtime to load the scene from the right AssetBundle
 
-        [Header("Broadcasting on")]
-        [SerializeField] private AssetReference _menuLoadChannel;
 
         private void Start()
         {
-            _managersScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true).Completed += LoadEventChannel;
-        }
+            gameSceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+            hudSceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
 
-        private void LoadEventChannel(AsyncOperationHandle<SceneInstance> obj)
-        {
-            _menuLoadChannel.LoadAssetAsync<LoadEventChannelSO>().Completed += LoadMainMenu;
-        }
-
-        private void LoadMainMenu(AsyncOperationHandle<LoadEventChannelSO> obj)
-        {
-            obj.Result.RaiseEvent(_menuToLoad, true);
-
-            SceneManager.UnloadSceneAsync(0); 
         }
     }
 }
