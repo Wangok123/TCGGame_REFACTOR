@@ -18,10 +18,11 @@ namespace GameREFACTOR.Systems
         private GameAction _rootAction;
         private IEnumerator _rootSequence;
         private List<GameAction> _openReactions;
+        private VictorySystem _victorySystem;
         
         public void Awake()
         {
-            
+            _victorySystem = Container.GetSystem<VictorySystem>();
         }
         
         public void Perform(GameAction action)
@@ -67,6 +68,13 @@ namespace GameREFACTOR.Systems
         {
             Global.Events.Publish(BEGIN_SEQUENCE_NOTIFICATION, action);
 
+            if (_victorySystem.CheckGameOver())
+            {
+                Debug.Log("Game Over was detected, all pending game actions will be canceled.");
+                action.Cancel();
+            }
+            
+            
             var phase = MainPhase(action.PreparePhase);
             while (phase.MoveNext())
             {

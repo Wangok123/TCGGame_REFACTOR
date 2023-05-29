@@ -21,6 +21,11 @@ namespace GameREFACTOR.Systems
         
         private void OnCompleteAllActions(object sender, object args)
         {
+            if(Container.CheckGameOver())
+            {
+                Container.ChangeState<GameOverState>();
+            }
+            
             Container.ChangeState<PlayerIdleState>();
         }
         

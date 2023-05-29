@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using GameREFACTOR.Data;
 using GameREFACTOR.Data.Cards;
 using GameREFACTOR.Enums;
+using GameREFACTOR.GameActions.Actions;
 using GameREFACTOR.Systems.Core;
 
 namespace GameREFACTOR.Systems
@@ -10,35 +11,42 @@ namespace GameREFACTOR.Systems
     {
         private MatchData _match;
         
-        public List<Card> PlayableCards { get; set; } = new List<Card>();
-        public List<Card> ActivatableCards { get; set; } = new List<Card>();
-        public List<Card> SolvableAdventureCards { get; set; } = new List<Card>();
-        
+        public List<Card> PlayableCards { get; set; } = new List<Card>();  //手牌中可用卡
+
         public void Awake()
         {
             
         }
 
+        /// <summary>
+        /// 每次操作结束，进入PlayerIdle阶段时，在这里刷新牌的状态
+        /// </summary>
+        /// <param name="mode"></param>
         public void Refresh(ControlMode mode)
         {
             PlayableCards.Clear();
-            ActivatableCards.Clear();
-            SolvableAdventureCards.Clear();
+
+            foreach (var card in _match.CurrentPlayer[Zones.Hand])
+            {
+                var playAction = new PlayCardAction(card);
+                if (playAction.Validate().Validate())
+                {
+                    PlayableCards.Add(card);
+                }
+            }
         }
         
         public bool IsPlayable(Card card) => PlayableCards.Contains(card);
-        public bool IsActivatable(Card card) => ActivatableCards.Contains(card);
-        public bool IsSolvable(Card card) => SolvableAdventureCards.Contains(card);
-        public bool IsActionable(Card card) => IsPlayable(card) || IsActivatable(card) || IsSolvable(card);
+        public bool IsActionable(Card card) => IsPlayable(card);
 
         public void ChangeZone(Card card, Zones zone, Player toPlayer = null)
         {
-            var fromPlayer = Container.GetMatch ().Players [card.ownerIndex];
+            var fromPlayer = card.Owner;
             toPlayer = toPlayer ?? fromPlayer;
-            fromPlayer [card.zone].Remove (card);
+            fromPlayer [card.Zone].Remove (card);
             toPlayer [zone].Add (card);
-            card.zone = zone;
-            card.ownerIndex = toPlayer.Index;
+            card.Zone = zone;
+            card.Owner = toPlayer;
         }
     }
 }

@@ -24,7 +24,7 @@ namespace GameREFACTOR.Systems
                 Container.Perform(action);
             }
         }
-        
+
         public void Awake()
         {
             _match = Container.GetMatch();
@@ -36,7 +36,7 @@ namespace GameREFACTOR.Systems
             var action = (ChangeTurnAction) args;
 
             _match.CurrentPlayerIndex = action.NextPlayerIndex;
-            _match.CurrentPlayer.ActionsAvailable = 2;
+            _match.CurrentPlayer.ActionsAvailable = 1;
         }
 
         public void Destroy()

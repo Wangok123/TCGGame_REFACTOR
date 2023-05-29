@@ -37,13 +37,13 @@ namespace GameREFACTOR.Views.Game
             var boardView = GetComponent<BoardView>();
             PlayerView playerView = boardView.playerView;
 
-            for (int i = 0; i < drawAction.Cards.Count; ++i)
+            for (int i = 0; i < drawAction.DrawnCards.Count; ++i)
             {
-                int deckSize = action.Player[Zones.Deck].Count + drawAction.Cards.Count - (i + 1);
+                int deckSize = action.Player[Zones.Deck].Count + drawAction.DrawnCards.Count - (i + 1);
 
                 playerView.deck.ShowDeckSize((float)deckSize / (float)30);
                 var cardView = boardView.cardPooler.Dequeue().GetComponent<CardView>();
-                cardView.card = drawAction.Cards[i];
+                cardView.card = drawAction.DrawnCards[i];
                 cardView.transform.ResetParent(playerView.hand.transform);
                 cardView.transform.position = playerView.deck.topCard.position;
                 cardView.transform.rotation = playerView.deck.topCard.rotation;

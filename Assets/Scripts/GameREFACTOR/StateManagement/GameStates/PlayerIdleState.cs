@@ -7,7 +7,8 @@ namespace GameREFACTOR.StateManagement.GameStates
     {
         public override void Enter()
         {
-            
+            var cardSystem = Game.GetSystem<CardSystem>();
+            cardSystem.Refresh(ControlMode.Local);
         }
     }
 }

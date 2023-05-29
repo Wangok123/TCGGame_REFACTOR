@@ -16,7 +16,6 @@ namespace GameREFACTOR.Data
         
         public ControlMode ControlMode { get; set; }
         public int Index { get; set; }
-        public int ActionsAvailable { get; set; }
         public string PlayerName { get; set; }
         public Mana mana  = new Mana ();
         
@@ -24,7 +23,7 @@ namespace GameREFACTOR.Data
         public List<Card> Deck       { get; }
         public List<Card> Discard    { get; }
         public List<Card> Hand       { get; }
-        
+        public List<Card> Bugs       { get; }
 
         public List<Card> this[Zones z] {
             get {

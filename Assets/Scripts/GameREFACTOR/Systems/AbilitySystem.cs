@@ -22,8 +22,7 @@ namespace GameREFACTOR.Systems
             var action = args as AbilityAction;
             var type = Type.GetType (action.ability.actionName);
             var instance = Activator.CreateInstance (type) as GameAction;
-            var loader = instance as IAbilityLoader;
-            if (loader != null)
+            if (instance is IAbilityLoader loader)
                 loader.Load (Container, action.ability);
             Container.AddReaction (instance);
         }

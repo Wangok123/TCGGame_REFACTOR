@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GameREFACTOR.Data.Cards.CardAttributes;
 using GameREFACTOR.Enums;
 using UnityEngine;
 
@@ -12,6 +13,9 @@ namespace GameREFACTOR.Data.Cards
         [Space(10)]
         public string CardName;
 
+        [Space(10)]
+        public int Cost;
+        
         [TextArea]
         [Space(10)]
         public string CardDescription;
@@ -26,6 +30,6 @@ namespace GameREFACTOR.Data.Cards
         [HideInInspector]
         public Sprite Image;
 
-       
+        public List<CardAttribute> Attributes = new List<CardAttribute>();
     }
 }

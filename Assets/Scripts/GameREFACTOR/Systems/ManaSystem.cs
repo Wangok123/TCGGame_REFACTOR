@@ -28,9 +28,9 @@ namespace GameREFACTOR.Systems
         {
             var playCardAction = sender as PlayCardAction;
             var validator = args as Validator;
-            var player = Container.GetMatch().Players[playCardAction.Card.ownerIndex];
-            if (player.mana.Available < playCardAction.Card.cost)
-                validator.Invalidate("费不够");
+            var player = playCardAction.Card.Owner;
+            if (player.mana.Available < playCardAction.Card.Data.Cost)
+                validator.Invalidate("Not Enough Mana");
         }
 
         private void OnPerformChangeTurn(object sender, object args)
@@ -49,7 +49,7 @@ namespace GameREFACTOR.Systems
         {
             var action = args as PlayCardAction;
             var mana = Container.GetMatch ().CurrentPlayer.mana;
-            mana.spent += action.Card.cost;
+            mana.spent += action.Card.Data.Cost;
             Global.Events.Publish(ValueChangedNotification,mana);
         }
     }
