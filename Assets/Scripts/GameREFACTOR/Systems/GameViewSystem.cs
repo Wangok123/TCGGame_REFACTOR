@@ -1,6 +1,7 @@
 using System;
 using GameREFACTOR.Data;
 using GameREFACTOR.Enums;
+using GameREFACTOR.GameActions.GameFlow;
 using GameREFACTOR.StateManagement;
 using GameREFACTOR.StateManagement.GameStates;
 using GameREFACTOR.Systems.Core;
@@ -41,6 +42,7 @@ namespace GameREFACTOR.Systems
         private void Start()
         {
             Temp_SetupSinglePlayer();
+            GameStart();
             Container.ChangeState<PlayerIdleState>();
         }
 
@@ -53,6 +55,12 @@ namespace GameREFACTOR.Systems
         {
             var match = Container.GetMatch();
             match.Players[0].ControlMode = ControlMode.Local;
+        }
+
+        private void GameStart()
+        {
+            var beginGame = new BeginGameAction();
+            _container.Perform(beginGame);
         }
     }
 }

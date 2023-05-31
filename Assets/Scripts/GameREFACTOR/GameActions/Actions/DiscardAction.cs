@@ -1,14 +1,16 @@
+using System.Collections.Generic;
 using GameREFACTOR.Data;
+using GameREFACTOR.Data.Cards;
 using GameREFACTOR.Interfaces;
 using GameREFACTOR.Systems.Core;
 
 namespace GameREFACTOR.GameActions.Actions
 {
-    public class DiscardAction : GameAction, IAbilityLoader
+    public class DiscardAction : GameAction
     {
-        public void Load(IContainer game, Ability ability)
-        {
-            
-        }
+        public List<Card> DiscardedCards { get; set; }
+
+        public GameAction SourceAction { get; set; }
+        
     }
 }

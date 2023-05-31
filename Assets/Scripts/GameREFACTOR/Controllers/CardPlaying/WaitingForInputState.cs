@@ -23,8 +23,8 @@ namespace GameREFACTOR.Controllers.CardPlaying
 
             var cardView = component.GetComponent<CardView>();
             if (cardView == null ||
-                cardView.Card.zone != Zones.Hand ||
-                cardView.Card.ownerIndex != context.Game.GetMatch().CurrentPlayerIndex)
+                cardView.Card.Zone != Zones.Hand ||
+                cardView.Card.Owner != context.Game.GetMatch().LocalPlayer)
                 return;
 
             gameStateMachine.ChangeState<PlayerInputState>();

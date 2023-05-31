@@ -32,9 +32,11 @@ namespace GameREFACTOR.Data.Cards
         [Tooltip("This field is used to compare cards for uniqueness when cards have the 'Unique' tag. If this field is empty, the Card Name will be used instead.")]
         public string UniquenessKey;
 
-        [HideInInspector]
+        public string effectText;
+        
         public Sprite Image;
 
         public List<CardAttribute> Attributes = new List<CardAttribute>();
+        
     }
 }

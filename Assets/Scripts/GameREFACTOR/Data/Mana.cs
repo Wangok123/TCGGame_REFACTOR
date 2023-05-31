@@ -6,7 +6,7 @@ namespace GameREFACTOR.Data
     {
         public const int MaxSlots = 10;
 
-        public int spent;
+        public int spent;          
         public int permanent;
         public int overloaded;
         public int pendingOverloaded;

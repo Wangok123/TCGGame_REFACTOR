@@ -132,7 +132,7 @@ namespace GameREFACTOR.Views.Game
         void OnValidatePlayCard(object sender, object args)
         {
             var action = sender as PlayCardAction;
-            if (GetComponentInParent<PlayerView>().Player.Index == action.Card.ownerIndex)
+            if (GetComponentInParent<PlayerView>().Player == action.Card.Owner)
             {
                 action.PerformPhase.Viewer = PlayCardViewer;
                 action.CancelPhase.Viewer = CancelPlayCardViewer;

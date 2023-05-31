@@ -16,10 +16,10 @@ namespace GameREFACTOR.Views.Game
 
         void Refresh()
         {
-            costText.text = Card.cost.ToString();
-            titleText.text = Card.name;
-            effectText.text = Card.text;
-            cardText.text = Card.description;
+            costText.text = Card.Data.Cost.ToString();
+            titleText.text = Card.Data.name;
+            effectText.text = Card.Data.effectText;
+            cardText.text = Card.Data.CardDescription;
         }
     }
 }

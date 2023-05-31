@@ -2,6 +2,7 @@ using GameREFACTOR.Data;
 using GameREFACTOR.Data.Cards;
 using GameREFACTOR.GameActions.Actions;
 using GameREFACTOR.Systems.Core;
+using GameREFACTOR.Util;
 
 namespace GameREFACTOR.Systems
 {
@@ -20,19 +21,11 @@ namespace GameREFACTOR.Systems
         }
         
         void OnPeformPlayCard (object sender, object args) {
-            var action = args as PlayCardAction;
-            var spell = action.Card as Spell;
-            if (spell != null) {
-                var reaction = new CastSpellAction (spell);
-                Container.AddReaction (reaction);
-            }
+            
         }
 
         void OnPrepareCastSpell (object sender, object args) {
-            var action = args as CastSpellAction;
-            var ability = action.spell.GetSystem<Ability> ();
-            var reaction = new AbilityAction (ability);
-            Container.AddReaction (reaction);
+            
         }
     }
 }

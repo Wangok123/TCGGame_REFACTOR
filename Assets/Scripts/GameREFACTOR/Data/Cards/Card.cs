@@ -33,20 +33,5 @@ namespace GameREFACTOR.Data.Cards
                 Attributes.Add(cloned);
             }
         }
-        
-        public void Load(CardData cardData)
-        {
-            id = cardData.Id;
-            name = cardData.CardName;
-            text = cardData.CardDescription;
-            description = cardData.ExtraDescription;
-        }
-
-        public virtual void Load (Dictionary<string, object> data) {
-            id = (string)data ["id"];
-            name = (string)data ["name"];
-            text = (string)data ["text"];
-            cost = System.Convert.ToInt32(data["cost"]);
-        }
     }
 }

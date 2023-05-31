@@ -39,13 +39,13 @@ namespace GameREFACTOR.Views.Game
             Debug.Log("Wh : draw");
             PlayerView playerView = boardView.playerView;
 
-            for (int i = 0; i < drawAction.Cards.Count; ++i)
+            for (int i = 0; i < drawAction.DrawnCards.Count; ++i)
             {
-                int deckSize = action.Player[Zones.Deck].Count + drawAction.Cards.Count - (i + 1);
+                int deckSize = action.Player[Zones.Deck].Count + drawAction.DrawnCards.Count - (i + 1);
 
                 playerView.deck.ShowDeckSize((float)deckSize / (float)30);
                 var cardView = boardView.cardPooler.Dequeue().GetComponent<CardView>();
-                cardView.Card = drawAction.Cards[i];
+                cardView.Card = drawAction.DrawnCards[i];
                 cardView.transform.ResetParent(playerView.hand.handArea);
 
                 cardView.transform.position = playerView.deck.topCard.position;

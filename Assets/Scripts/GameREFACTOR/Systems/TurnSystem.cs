@@ -36,7 +36,6 @@ namespace GameREFACTOR.Systems
             var action = (ChangeTurnAction) args;
 
             _match.CurrentPlayerIndex = action.NextPlayerIndex;
-            _match.CurrentPlayer.ActionsAvailable = 1;
         }
 
         public void Destroy()

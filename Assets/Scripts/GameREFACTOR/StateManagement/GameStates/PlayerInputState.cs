@@ -1,5 +1,6 @@
-﻿using GameREFACTOR.StateManagement;
+﻿namespace GameREFACTOR.StateManagement.GameStates
+{
+    public class PlayerInputState : BaseState {
 
-public class PlayerInputState : BaseState {
-
+    }
 }

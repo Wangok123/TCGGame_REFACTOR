@@ -11,11 +11,15 @@ namespace GameREFACTOR.Systems
     public class PlayerSystem : GameSystem, IObserve
     {
         private const int STARTING_HAND_AMOUNT = 5;
+        private const int PER_TURN_AMOUNT = 5;
+        private int DrawCardOffset = 0;
 
         private HandSystem _handSystem;
         private AbilitySystem _abilitySystem;
         private MatchData _match;
 
+        private bool IsFirstTurn = true;
+        
         public void Awake()
         {
             _handSystem = Container.GetSystem<HandSystem>();
@@ -34,7 +38,7 @@ namespace GameREFACTOR.Systems
 
         private void OnPerformBeginGame(object sender, object args)
         {
-            _handSystem.DrawCards(_match.LocalPlayer, STARTING_HAND_AMOUNT);
+            
             _match.CurrentPlayerIndex = 0;
 
             Container.ChangeTurn();
@@ -45,7 +49,14 @@ namespace GameREFACTOR.Systems
             var action = (ChangeTurnAction) args;
             var player = _match.Players[action.NextPlayerIndex];
 
-            _handSystem.DrawCards(player, 1);
+            if (IsFirstTurn)
+            {
+                _handSystem.DrawCards(_match.LocalPlayer, STARTING_HAND_AMOUNT);
+            }
+            else
+            {
+                _handSystem.DrawCards(player, PER_TURN_AMOUNT + DrawCardOffset);
+            }
         }
 
         public void ChangeZone (Card card, Zones zone, Player toPlayer = null) {

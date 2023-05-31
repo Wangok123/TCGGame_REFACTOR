@@ -63,12 +63,9 @@ namespace GameREFACTOR.Data
         private void LoadCardData(GameSettings settings)
         {
             List<CardData> localDeck = settings.LocalDeck;
-            IEnumerable<Card> cards = localDeck.Select(x =>
-            {
-                var card = new Card();
-                card.Load(x);
-                return card;
-            }).ToArray();
+            IEnumerable<Card> cards = default;
+            //ToDo: 加载卡
+            
             
             AllCards.AddRange(cards);
             Deck.AddRange(cards);
@@ -76,8 +73,6 @@ namespace GameREFACTOR.Data
 
         private void ResetState()
         {
-            ActionsAvailable = 0;
-
             AllCards.Clear();
             Deck.Clear();
             Discard.Clear();
