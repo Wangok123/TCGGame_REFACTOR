@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace GameREFACTOR.Systems.Core
@@ -28,7 +29,16 @@ namespace GameREFACTOR.Systems.Core
         public T GetSystem<T>(string key = null) where T : IGameSystem
         {
             key ??= typeof(T).Name;
-            var system = _systems.ContainsKey(key) ? (T)_systems[key] : default;
+            T system;
+            if (_systems.ContainsKey(key))
+            {
+                system = (T)_systems[key];
+            }
+            else
+            {
+                throw new ArgumentException($"{key} not in Container");
+            }
+
             return system;
         }
 

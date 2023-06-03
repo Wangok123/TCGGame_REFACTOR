@@ -15,7 +15,7 @@ namespace GameREFACTOR.Systems
 
         public void Awake()
         {
-            
+            _match = this.Container.GetMatch();
         }
 
         /// <summary>

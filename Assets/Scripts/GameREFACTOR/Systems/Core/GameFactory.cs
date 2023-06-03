@@ -19,6 +19,9 @@ namespace GameREFACTOR.Systems.Core
             game.AddSystem<PlayerSystem>();
             game.AddSystem<ManaSystem>();
             game.AddSystem<CardSystem>();
+            game.AddSystem<VictorySystem>();
+            game.AddSystem<HandSystem>();
+            game.AddSystem<AbilitySystem>();
             // Add Others
             game.AddSystem<StateMachine>();
             return game;

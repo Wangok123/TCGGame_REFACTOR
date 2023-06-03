@@ -17,13 +17,13 @@ namespace GameREFACTOR.Data
         public ControlMode ControlMode { get; set; }
         public int Index { get; set; }
         public string PlayerName { get; set; }
-        public Mana mana  = new Mana ();
-        
-        public List<Card> AllCards  { get; }
-        public List<Card> Deck       { get; }
-        public List<Card> Discard    { get; }
-        public List<Card> Hand       { get; }
-        public List<Card> Bugs       { get; }
+        public Mana mana = new Mana();
+
+        public List<Card> AllCards { get; }
+        public List<Card> Deck { get; }
+        public List<Card> Discard { get; }
+        public List<Card> Hand { get; }
+        public List<Card> Bugs { get; }
 
         public List<Card> this[Zones z]
         {
@@ -63,9 +63,7 @@ namespace GameREFACTOR.Data
         private void LoadCardData(GameSettings settings)
         {
             List<CardData> localDeck = settings.LocalDeck;
-            IEnumerable<Card> cards = default;
-            //ToDo: 加载卡
-            
+            IEnumerable<Card> cards = localDeck.Select(x => new Card(x, this)).ToArray();
             
             AllCards.AddRange(cards);
             Deck.AddRange(cards);
