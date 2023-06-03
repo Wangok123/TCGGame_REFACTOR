@@ -17,7 +17,7 @@ namespace GameREFACTOR.Views.Game
         public Transform handArea;
         public Transform activeHandle;
         public Transform inactiveHandle;
-        
+
         [SerializeField] private float addCardDuration = 0.1f;
 
 
@@ -64,7 +64,7 @@ namespace GameREFACTOR.Views.Game
             Tweener tweener = null;
             card.RotateTo(activeHandle.rotation);
             tweener = card.MoveTo(activeHandle.position, Tweener.DefaultDuration, EasingEquations.EaseOutBack);
-            
+
             while (tweener != null)
             {
                 yield return null;
@@ -132,11 +132,9 @@ namespace GameREFACTOR.Views.Game
         void OnValidatePlayCard(object sender, object args)
         {
             var action = sender as PlayCardAction;
-            if (GetComponentInParent<PlayerView>().Player == action.Card.Owner)
-            {
-                action.PerformPhase.Viewer = PlayCardViewer;
-                action.CancelPhase.Viewer = CancelPlayCardViewer;
-            }
+
+            action.PerformPhase.Viewer = PlayCardViewer;
+            action.CancelPhase.Viewer = CancelPlayCardViewer;
         }
 
         IEnumerator PlayCardViewer(IContainer game, GameAction action)
