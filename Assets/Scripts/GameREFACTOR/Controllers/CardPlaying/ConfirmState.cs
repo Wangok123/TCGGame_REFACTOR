@@ -9,7 +9,6 @@ namespace GameREFACTOR.Controllers.CardPlaying
     {
         public override void Enter()
         {
-            base.Enter();
             var context = Container.GetSystem<CardPlayingContext>();
             var action = new PlayCardAction(context.ActiveCardView.Card);
             context.Game.Perform(action);

@@ -12,24 +12,38 @@ namespace GameREFACTOR.Controllers.CardPlaying
     {
         public void OnClickNotification(object sender, object args)
         {
+            Debug.Log($"Click {sender} {args}");
             var context = Container.GetSystem<CardPlayingContext>();
             var gameStateMachine = context.Game.GetSystem<StateMachine>();
 
             if (gameStateMachine.CurrentState is not PlayerIdleState)
                 return;
 
-            if (sender is not Component component)
+            if (args is not CardView cardView)
                 return;
 
-            var cardView = component.GetComponent<CardView>();
-            if (cardView == null ||
-                cardView.Card.Zone != Zones.Hand ||
-                cardView.Card.Owner != context.Game.GetMatch().LocalPlayer)
+            if (!Validate(cardView, context)) 
                 return;
 
+            Debug.Log("ChangeState PlayerInputState");
             gameStateMachine.ChangeState<PlayerInputState>();
             context.ActiveCardView = cardView;
-            // owner.stateMachine.ChangeState<ShowPreviewState>();
+            
+            Owner.ChangeState<ShowPreviewState>();
+        }
+
+        private static bool Validate(CardView cardView, CardPlayingContext context)
+        {
+            if (cardView == null)
+                return false;
+            
+            if (cardView.Card.Zone != Zones.Hand)
+                return false;
+            
+            if (cardView.Card.Owner != context.Game.GetMatch().LocalPlayer)
+                return false;
+            
+            return true;
         }
     }
 }

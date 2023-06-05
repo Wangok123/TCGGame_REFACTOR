@@ -1,14 +1,17 @@
+using GameREFACTOR.Views.Game;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static GameREFACTOR.Notification;
 
 namespace GameREFACTOR.Controllers.CardPlaying
 {
     public class CardSelectController : MonoBehaviour,IPointerClickHandler
     {
+        [SerializeField] private CardView cardView;
+        
         public void OnPointerClick(PointerEventData eventData)
         {
-            Debug.Log("Woc");
-            Global.Events.Publish(Notification.Perform<CardSelectController>());
+            Global.Events.Publish(Perform<CardSelectController>(),cardView,this);
         }
     }
 }
