@@ -2,11 +2,10 @@ using GameREFACTOR.Enums;
 using GameREFACTOR.StateManagement;
 using GameREFACTOR.StateManagement.GameStates;
 using GameREFACTOR.Systems;
-using GameREFACTOR.Systems.Core;
 using GameREFACTOR.Views.Game;
 using UnityEngine;
 
-namespace GameREFACTOR.Controllers.CardPlaying
+namespace GameREFACTOR.Controllers.CardPlaying.State
 {
     internal class WaitingForInputState : BaseState, IClickableHandler
     {

@@ -3,7 +3,7 @@ using GameREFACTOR.StateManagement.GameStates;
 using GameREFACTOR.Systems;
 using GameREFACTOR.Systems.Core;
 
-namespace GameREFACTOR.Controllers.CardPlaying
+namespace GameREFACTOR.Controllers.CardPlaying.State
 {
     internal class ResetState : BaseState
     {

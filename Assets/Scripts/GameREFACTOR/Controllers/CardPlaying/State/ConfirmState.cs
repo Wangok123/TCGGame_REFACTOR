@@ -1,9 +1,8 @@
 using GameREFACTOR.GameActions.Actions;
 using GameREFACTOR.StateManagement;
 using GameREFACTOR.Systems;
-using GameREFACTOR.Systems.Core;
 
-namespace GameREFACTOR.Controllers.CardPlaying
+namespace GameREFACTOR.Controllers.CardPlaying.State
 {
     internal class ConfirmState : BaseState
     {
